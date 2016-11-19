@@ -15,6 +15,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import cl.telematica.android.certamen3.database.DatabaseHelper;
+import cl.telematica.android.certamen3.models.Feed;
+
 /**
  * Created by franciscocabezas on 11/18/16.
  */
@@ -40,6 +43,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         this.mContext = mContext;
         this.mDataset = myDataset;
     }
+
 
     @Override
     public DataAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
@@ -82,8 +86,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
                 feed.setFavorite(!feed.isFavorite());
                 if(feed.isFavorite()) {
                     holder.mAddBtn.setText(mContext.getString(R.string.added));
+                    DatabaseHelper.getInstance().saveOneToDatabase(feed);
                 } else {
                     holder.mAddBtn.setText(mContext.getString(R.string.like));
+                    DatabaseHelper.getInstance().deleteOneFromDatabase(feed);
                 }
             }
         });

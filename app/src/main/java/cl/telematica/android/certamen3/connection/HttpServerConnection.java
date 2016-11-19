@@ -1,4 +1,4 @@
-package cl.telematica.android.certamen3;
+package cl.telematica.android.certamen3.connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;
